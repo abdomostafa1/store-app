@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:store_app/network/add_product_service.dart';
 
 void main() {
+  AddProductService().addProduct()
   runApp(const StoreApp());
 }
 
