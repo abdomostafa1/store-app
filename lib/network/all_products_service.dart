@@ -10,8 +10,8 @@ class AllProductsService {
     if (response.statusCode == 200) {
       List<dynamic>data = jsonDecode(response.body);
       List<ProductModel> productsList = [];
-      for (var item in data) {
-        productsList.add(ProductModel.fromJson(item));
+      for (var i =0;i<4;i++) {
+        productsList.add(ProductModel.fromJson(data[i]));
       }
 
       return productsList;

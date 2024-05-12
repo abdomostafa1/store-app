@@ -1,9 +1,11 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:http/http.dart' as http;
+import 'package:store_app/models/product_model.dart';
 
 class AddProductService {
-  void addProduct() async {
+  Future<ProductModel> addProduct() async {
     final response = await http.post(
       Uri.parse('https://fakestoreapi.com/products'),
       body: {
@@ -14,6 +16,11 @@ class AddProductService {
         'category': 'electronic'
       },
     );
-    log(response.body);
+    if (response.statusCode == 200) {
+      Map<String, dynamic> data = jsonDecode(response.body);
+      return ProductModel.fromJson(data);
+    } else {
+      throw Exception('there is an error');
+    }
   }
 }

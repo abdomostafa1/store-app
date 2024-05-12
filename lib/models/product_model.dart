@@ -3,7 +3,7 @@ import 'dart:ffi';
 class ProductModel {
   final int id;
   final String title;
-  final String price;
+  final double price;
   final String description;
   final String category;
   final String image;
