@@ -14,18 +14,22 @@ class UpdateProductService {
     required String image,
     required String category,
   }) async {
+    final body = {
+      'title': title,
+      'price': price,
+      'description': desc,
+      'image': image,
+      'category': category
+    };
+    final url ='https://fakestoreapi.com/products/$id';
+    print('body=$body  & url=$url');
     final response = await http.put(
-      Uri.parse('https://fakestoreapi.com/products'),
-      body: {
-        'title': title,
-        'price': price,
-        'description': desc,
-        'image': image,
-        'category': category
-      },
+      Uri.parse(url),
+      body:body,
     );
     if (response.statusCode == 200) {
       Map<String, dynamic> data = jsonDecode(response.body);
+      print('data=$data');
       return ProductModel.fromJson(data);
     } else {
       throw Exception('there is an error');
